@@ -4,41 +4,31 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
-
-/*
-app.get("/health", (req, res) => {
-  res.status(200).send("Don't panic.");
-});
-*/
-
-
 var books = []
-
 
 app.post('/api/books', function (req, res) {
   var book = req.body;
-  print(book)
+  console.log('book');
+  console.log(book);
   var newBook = {
-    "id": users.length + 1,
+    "id": books.length + 1,
     "author": book.author,
     "title": book.title,
     "yearPublished": book.yearPublished
-
   };
   books.push(newBook);
-  return res.status(200).send('OK').json(newBook);
+  return res.status(200).send({ "HTTP Status": '201 Created',  "Response Body (JSON)": newBook})
 });
 
 
 app.get('/api/books', function(req, res){
-  return res.status(200).send('OK').json(books);    
+  return res.status(200).send({ "HTTP Status": '201 Created',  "Response Body (JSON)": books})
 });
 
 
 app.delete('/api/books', (req, res) => {
   books = []
-  res.status(204).send("None").json("None")
+  res.status(204).send({ "HTTP Status": '204 (No Content)',  "Response Body (JSON)": None})
 })
 
 module.exports = app;
