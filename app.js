@@ -23,24 +23,19 @@ app.post('/api/books', function (req, res) {
     "title": book["title"],
     "yearPublished": book["yearPublished"]
   };
-  books.push(book);
-  return res.status(200).send(newBook);
+  books.push(newBook);
+  return res.status(200).send('OK').json(newBook);
 });
 
 
 app.get('/api/books', function(req, res){
-  return res.json(books);    
-});
-
-
-app.get('/api/books', function(req, res){
-  return res.json(books);    
+  return res.status(200).send('OK').json(books);    
 });
 
 
 app.delete('/api/books', (req, res) => {
   books = []
-  res.send("None")
+  res.status(204).send("None").json("None")
 })
 
 module.exports = app;
