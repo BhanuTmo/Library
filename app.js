@@ -20,6 +20,9 @@ app.post('/api/books', function (req, res) {
   return res.status(200).send({ "HTTP Status": '201 Created',  "Response Body (JSON)": newBook})
 });
 
+app.get('/', function(req, res){
+  return res.status(200).send("Welcome to bookshop")
+});
 
 app.get('/api/books', function(req, res){
   return res.status(200).send({ "HTTP Status": '201 Created',  "Response Body (JSON)": books})
