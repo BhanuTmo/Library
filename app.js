@@ -28,7 +28,7 @@ app.get('/api/books', function(req, res){
 
 app.delete('/api/books', (req, res) => {
   books = []
-  res.status(204).send({ "HTTP Status": '204 (No Content)',  "Response Body (JSON)": None})
+  res.status(204).send({ "HTTP Status": '204 (No Content)',  "Response Body (JSON)": "None"})
 })
 
 module.exports = app;
