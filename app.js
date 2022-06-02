@@ -23,7 +23,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/api/books', function(req, res){
-  return res.status(200).send({'books': books})
+  return res.status(200).send({'books': books.sort(dynamicSort("title"))})
 });
 
 
@@ -31,5 +31,11 @@ app.delete('/api/books', (req, res) => {
   books = []
   res.status(204).send()
 })
+
+function dynamicSort(property) {
+  return function (a,b) {
+    return a[property].localeCompare(b[property]);      
+  }
+}
 
 module.exports = app;
