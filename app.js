@@ -8,8 +8,6 @@ var books = []
 
 app.post('/api/books', function (req, res) {
   var book = req.body;
-  console.log('book');
-  console.log(book);
   var newBook = {
     "id": books.length + 1,
     "author": book.author,
@@ -17,7 +15,7 @@ app.post('/api/books', function (req, res) {
     "yearPublished": book.yearPublished
   };
   books.push(newBook);
-  return res.status(200).send({ "HTTP Status": '201 Created',  "Response Body (JSON)": newBook})
+  return res.status(201).send({ ...newBook})
 });
 
 app.get('/', function(req, res){
@@ -25,13 +23,13 @@ app.get('/', function(req, res){
 });
 
 app.get('/api/books', function(req, res){
-  return res.status(200).send({ "HTTP Status": '201 Created',  "Response Body (JSON)": books})
+  return res.status(200).send({'books': books})
 });
 
 
 app.delete('/api/books', (req, res) => {
   books = []
-  res.status(204).send({ "HTTP Status": '204 (No Content)',  "Response Body (JSON)": "None"})
+  res.status(204).send()
 })
 
 module.exports = app;
